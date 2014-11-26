@@ -25,15 +25,20 @@ def plot(location):
     # Load data
     x,y = fetch_data(location)
 
-    # Plot Data
+    # Set up the plot
+    offset = .2
+    axes = plt.gca()
+    axes.set_ylim([np.amin(y) - offset, np.amax(y) + offset])
+    plt.ylabel(u'Tensión [V]')
+    plt.xlabel('Tiempo [s]')
+    plt.grid()
 
-    plt.ylabel('Voltage [V]')
-    plt.ylabel('Time [s]')
+    # Plot Data
     plt.plot(x, y)
 
     # Show or save plot
-    plt.show()
-    # plt.save()
+    # plt.show()
+    plt.savefig(location + '.png', dpi=350)
 
 if __name__ == '__main__':
     import sys
