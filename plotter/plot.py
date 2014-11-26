@@ -11,9 +11,12 @@ def fetch_data(location):
     y = np.array([])
 
     with open(location) as datafile: # Wont handle the posible exceptions
+        t0 = float('inf');
         for line in datafile:
-            tmp_x, tmp_y = line.split(" ") # example separator
-            x = np.append(x, float(tmp_x))
+            tmp_x, tmp_y = line.split(' ') # example separator
+            tmp_x = float(tmp_x)
+            t0 = min(tmp_x, t0)
+            x = np.append(x, tmp_x-t0)
             y = np.append(y, float(tmp_y))
 
     return x, y
